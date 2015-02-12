@@ -1,0 +1,23 @@
+
+<div class="weather-card <%= currently.icon %>">
+    <div class="current">
+        <h5><%= new Date(currently.time*1000).toDateString() %></h5>
+        <h6><%= new Date(currently.time*1000).toHourStamp() %></h6>
+        <hr>
+
+        <h1><%= currently.apparentTemperature %>°</h1>
+        <h2><%= hourly.summary %></h2>
+        <hr>
+
+        <div class="grid grid-2">
+            <span>
+                Sunrise
+                <%= new Date(daily.data[0].sunriseTime*1000).toHourStamp() %>
+            </span>
+            <span>
+                Sunset
+                <%= new Date(daily.data[0].sunsetTime*1000).toHourStamp() %>
+            </span>
+        </div>
+    </div>
+</div>

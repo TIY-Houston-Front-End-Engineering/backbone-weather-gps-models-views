@@ -39,6 +39,41 @@
 
 @include gridify(2, 400);
 @include gridify(4, 600);
+.grid-2 {
+    > * {
+        width: 48%;
+        text-align: center;
+    }
+}
+
+/**
+ * PACE (automatic pre-loader thingy)
+ */
+
+.pace {
+    pointer-events: none;
+    user-select: none;
+    transition: all 1s ease;
+}
+
+.pace-inactive {
+    opacity: 0;
+}
+
+.pace-active {
+    opacity: 1;
+}
+
+.pace .pace-progress {
+    background: #2299dd;
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    right: 100%;
+    width: 100%;
+    height: 2px;
+    transition: all 1s ease;
+}
 
 /**
  * GENERAL
@@ -46,6 +81,83 @@
 
 img {max-width:100%;}
 
+html {
+    background-color: #ccc;
+    background:
+    linear-gradient(115deg, transparent 75%, rgba(255,255,255,.8) 15%) 0 0,
+    linear-gradient(245deg, transparent 75%, rgba(255,255,255,.8) 15%) 0 0,
+    linear-gradient(115deg, transparent 75%, rgba(255,255,255,.8) 15%) 7px -15px,
+    linear-gradient(245deg, transparent 75%, rgba(255,255,255,.8) 15%) 7px -15px,
+    #efefef;
+    background-size: 15px 30px;
+}
+
 body {
     transition: opacity .25s ease;
+}
+
+.weather-card {
+    display: block;
+    max-width: 500px;
+    text-align: center;
+    margin: 5em auto;
+    padding: 1em;
+    box-shadow: 0 10px 40px -12px #000, 0 -10px 20px -12px #eee;
+    animation: dropIn .5s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+    border-radius: 5px;
+
+    hr {
+        height:1px;
+        border:none;
+        outline:none;
+        background: #222;
+    }
+}
+
+@keyframes dropIn {
+    0% { opacity: 0; transform: scale(.5); }
+    50% { opacity: 0.75; transform: scale(1.15); }
+    75% { opacity: 1; transform: scale(.95); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+.clear-day {
+    background: linear-gradient(90deg, #ffb347 10%, #ffcc33 90%); /* W3C */
+}
+.clear-night {
+    background: linear-gradient(90deg, #6441A5 10%, #2a0845 90%);
+}
+.rain {
+    background: linear-gradient(90deg, #1F1C2C 10%, #928DAB 90%); /* W3C */
+}
+.snow {
+    background: linear-gradient(90deg, #ECE9E6 10%, #FFFFFF 90%);
+}
+.sleet {
+    background: linear-gradient(90deg, #ECE9E6 10%, #FFFFFF 90%);
+}
+.wind {
+    background: linear-gradient(90deg, #F1F2B5 10%, #135058 90%);
+}
+.fog {
+    background: linear-gradient(90deg, #8e9eab 10%, #eef2f3 90%);
+}
+.cloudy {
+    background: linear-gradient(90deg, #8e9eab 10%, #eef2f3 90%);
+}
+.partly-cloudy-day {
+    background: linear-gradient(90deg, #73C8A9 10%, #373B44 90%);
+}
+.partly-cloudy-night {
+    background: linear-gradient(90deg, #73C8A9 10%, #373B44 90%);
+}
+
+.rain, .sleet, .fog, .cloudy, .partly-cloudy-night, .partly-cloudy-day {
+    color: white;
+    h1, h2, h3, h4, h5, h6 {
+        color: white;
+    }
+    hr {
+        background-color: white;
+    }
 }
