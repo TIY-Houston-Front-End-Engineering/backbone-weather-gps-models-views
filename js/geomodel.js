@@ -97,16 +97,23 @@
      * WeatherRouter
      */
     Backbone.WeatherRouter = Backbone.Router.extend({
-        initialize: function(){ Backbone.history.start() },
+        initialize: function(){
+            this.model = new Backbone.WeatherModel({ access_token: "d353c94884828ab143c8633437f899aa" })
+            this.view = new Backbone.WeatherView({ model: this.model });
+            Backbone.history.start();
+        },
         routes: {
             "f/:lat/:lng": "weather",
             "*default": "home"
         },
         home: function(){
             Pace.restart();
-            var m = new Backbone.WeatherModel({ access_token: "d353c94884828ab143c8633437f899aa" }),
-                v = new Backbone.WeatherView({ model: m });
-            m.geofetch();
+            this.model.geofetch();
+        },
+        weather: function(lat, lng){
+            Pace.restart();
+            this.model.set({ latitude: lat, longitude: lng });
+            this.model.fetch();
         }
     })
 
